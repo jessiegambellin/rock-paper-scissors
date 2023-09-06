@@ -3,8 +3,6 @@ let playerScore = 0
 let computerScore = 0
 let choices = Array.from(document.getElementsByClassName('choice'));
 
-
-
 function getComputerChoice() {
     return computerChoiceOptions[Math.floor(Math.random() * computerChoiceOptions.length)];
 }
@@ -42,6 +40,13 @@ function playGame(computerChoice, playerChoice) {
 choices.forEach(choice => {
      choice.addEventListener('click', function(){
         playGame(getComputerChoice(),choice.value)
+        document.getElementById('playerScoreText').innerHTML = 'Player Score: ' + playerScore
+        document.getElementById('computerScoreText').innerHTML = 'Computer Score: ' + computerScore
+        if (playerScore === 5) {
+            document.getElementById('results').innerHTML = "You won!"
+        } else if (computerScore === 5) {
+            document.getElementById('results').innerHTML = "You lost!"
+        }
     })
 });
 
